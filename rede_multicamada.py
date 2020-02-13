@@ -20,3 +20,6 @@ for j in range(epocas):
 
     somaSinapse1 = np.dotproduct(camadaOculta, pesos1)
     camadaSaida = sigmoid(somaSinapse1)
+
+    erroCamadaSaida = saidas - camadaSaida # gera um array com a subtracao dos valores em index iguais
+    mediaErro = np.mean(np.abs(erroCamadaSaida))
