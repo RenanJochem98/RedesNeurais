@@ -4,6 +4,10 @@ def sigmoid(soma):
     # return 1 / (1 - np.exp(-soma)) # divide por zero
     return 1 / 1 - np.exp(-soma)
 
+# funcao para calculo da descida do gradiente
+def sigmoidDerivada(sig):
+    return sig * (1 - sig)
+
 # r = sigmoid(0)
 entradas = np.array([[0,0], [0,1],[1,0],[1,1]])
 saidas = np.array([[0],[1],[1],[0]])
