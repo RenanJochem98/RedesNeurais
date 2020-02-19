@@ -1,4 +1,6 @@
 import numpy as np
+import time
+from datetime import datetime
 
 def calculaAtivacao(entradas, pesos):
     somaSinapse = np.dot(entradas, pesos)
@@ -31,10 +33,11 @@ pesos0 = np.array([[-0.424, -0.740,-0.961],
                     [0.358, -0.577, -0.469]])
 pesos1 = np.array([[-0.017], [-0.893], [0.148]])
 
-epocas = 10
+epocas = 1000000
 taxaAprendizagem = 0.3
 momento = 1 # momento serve para achar falsos minimos locais
 
+inicio = datetime.now()
 for j in range(epocas):
     camadaEntrada = entradas
 
@@ -58,3 +61,19 @@ for j in range(epocas):
     pesos1 = atualizaPesos(camadaOculta, deltaSaida, pesos1, momento, taxaAprendizagem)
     # atualizacao de pesos da camada de entrada, para backpropagration
     pesos0 = atualizaPesos(camadaEntrada, deltaCamadaOculta, pesos0, momento, taxaAprendizagem)
+
+fim = datetime.now()
+print("Acabou")
+print("#####################################################")
+print("Epoca: "+str(j+1))
+print("Tempo: ", end=" ")
+print(fim-inicio)
+print("Erro medio: " + str(mediaAbsoluta))
+print("Pesos0: ")
+print(pesos0)
+print()
+print("Pesos1:" , end="")
+print(pesos1)
+print()
+print("Saida:" , end="")
+print(camadaSaida)
