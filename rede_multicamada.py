@@ -48,9 +48,11 @@ for j in range(epocas):
     # nao eh necessario percorrer o array pq sao arrays do numpy. A lib se encarrega disso
     erroCamadaSaida = saidas - camadaSaida
     mediaAbsoluta = np.mean(np.abs(erroCamadaSaida))
+    print("Erro: "+ str(mediaAbsoluta)+ " Epoca: "+ str(j))
 
     derivadaSaida = sigmoidDerivada(camadaSaida) # gradiente
-    deltaSaida = deltaSaida(derivadaSaida, erroCamadaSaida)
+    # deltaSaida = deltaSaida(derivadaSaida, erroCamadaSaida) #TypeError: 'numpy.ndarray' object is not callable??
+    deltaSaida = erroCamadaSaida * derivadaSaida
 
     pesos1Transposta = pesos1.T # eh necessaria a transposta para multiplicacao de matrizes do dot product
     deltaSaidaXPeso = deltaSaida.dot(pesos1Transposta)
