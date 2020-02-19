@@ -29,9 +29,13 @@ def deltaSaida(sigmoidDerivada, erro):
 entradas = np.array([[0,0], [0,1],[1,0],[1,1]])
 saidas = np.array([[0],[1],[1],[0]])
 
-pesos0 = np.array([[-0.424, -0.740,-0.961],
-                    [0.358, -0.577, -0.469]])
-pesos1 = np.array([[-0.017], [-0.893], [0.148]])
+# pesos0 = np.array([[-0.424, -0.740,-0.961],
+#                     [0.358, -0.577, -0.469]])
+# pesos1 = np.array([[-0.017], [-0.893], [0.148]])
+pesos0 = 2*np.random.random((2,3)) - 1
+pesos1 = 2*np.random.random((3,1)) - 1
+pesos0_inicial = pesos0
+pesos1_inicial = pesos1
 
 epocas = 1000000
 taxaAprendizagem = 0.3
@@ -65,14 +69,21 @@ for j in range(epocas):
     pesos0 = atualizaPesos(camadaEntrada, deltaCamadaOculta, pesos0, momento, taxaAprendizagem)
 
 fim = datetime.now()
-print("Acabou")
-print("#####################################################")
+print()
+print("#"*20+"    RESULTADO    "+"#"*20)
+print()
 print("Epoca: "+str(j+1))
 print("Tempo: ", end=" ")
 print(fim-inicio)
 print("Erro medio: " + str(mediaAbsoluta))
+print("Pesos0 Inicial: ")
+print(pesos0_inicial)
+print()
 print("Pesos0: ")
 print(pesos0)
+print()
+print("Pesos1 Inicial:")
+print(pesos1_inicial)
 print()
 print("Pesos1:")
 print(pesos1)
@@ -80,3 +91,4 @@ print()
 print("Saida:")
 print(camadaSaida)
 print()
+print("#"*50)
